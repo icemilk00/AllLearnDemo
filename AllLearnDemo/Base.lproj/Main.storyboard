@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="lRE-hb-OwV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="lRE-hb-OwV">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -185,12 +185,63 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nl3-7Y-nHu">
-                                <rect key="frame" x="109" y="150" width="158" height="30"/>
-                                <state key="normal" title="Merga video"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nl3-7Y-nHu">
+                                <rect key="frame" x="108" y="92" width="158" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="158" id="DON-7L-5aR"/>
+                                    <constraint firstAttribute="height" constant="30" id="rED-ai-Tjp"/>
+                                </constraints>
+                                <state key="normal" title="load asset 1"/>
+                                <connections>
+                                    <action selector="loadFirstAsset:" destination="MB1-US-gpX" eventType="touchUpInside" id="kNA-1Z-5B8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YJj-wr-2pM">
+                                <rect key="frame" x="108" y="151" width="158" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="158" id="77E-3K-wMW"/>
+                                    <constraint firstAttribute="height" constant="30" id="rH6-x9-Fm4"/>
+                                </constraints>
+                                <state key="normal" title="load asset 2"/>
+                                <connections>
+                                    <action selector="loadSecondAsset:" destination="MB1-US-gpX" eventType="touchUpInside" id="VlJ-sF-Rul"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1a3-0B-lXk">
+                                <rect key="frame" x="108" y="215" width="158" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="158" id="Hsa-yy-mA2"/>
+                                    <constraint firstAttribute="height" constant="30" id="odi-sF-64R"/>
+                                </constraints>
+                                <state key="normal" title="load Audio"/>
+                                <connections>
+                                    <action selector="loadAudio:" destination="MB1-US-gpX" eventType="touchUpInside" id="ZlH-Yv-wQV"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Oe-Mt-reA">
+                                <rect key="frame" x="108" y="280" width="158" height="43"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="158" id="Uyl-Gr-Qmp"/>
+                                    <constraint firstAttribute="height" constant="43" id="gHQ-Rz-ouQ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <state key="normal" title="Merga!!"/>
+                                <connections>
+                                    <action selector="MergaVideoAndSave:" destination="MB1-US-gpX" eventType="touchUpInside" id="zV9-n0-wSe"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="YJj-wr-2pM" firstAttribute="centerX" secondItem="VNv-L3-Bjt" secondAttribute="centerX" id="1vZ-tn-03z"/>
+                            <constraint firstItem="nl3-7Y-nHu" firstAttribute="centerX" secondItem="VNv-L3-Bjt" secondAttribute="centerX" id="Ffr-JN-xhK"/>
+                            <constraint firstItem="1a3-0B-lXk" firstAttribute="top" secondItem="YJj-wr-2pM" secondAttribute="bottom" constant="34" id="aAD-6d-Dcb"/>
+                            <constraint firstItem="5Oe-Mt-reA" firstAttribute="centerX" secondItem="VNv-L3-Bjt" secondAttribute="centerX" id="bRH-Fm-RhB"/>
+                            <constraint firstItem="5Oe-Mt-reA" firstAttribute="top" secondItem="1a3-0B-lXk" secondAttribute="bottom" constant="35" id="iXn-kV-c8d"/>
+                            <constraint firstItem="nl3-7Y-nHu" firstAttribute="top" secondItem="dkt-fv-9zn" secondAttribute="bottom" constant="48" id="nAH-LW-4MP"/>
+                            <constraint firstItem="YJj-wr-2pM" firstAttribute="top" secondItem="nl3-7Y-nHu" secondAttribute="bottom" constant="29" id="w6h-du-vT8"/>
+                            <constraint firstItem="1a3-0B-lXk" firstAttribute="centerX" secondItem="VNv-L3-Bjt" secondAttribute="centerX" id="wok-7V-aqy"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Merga" id="54Z-RG-sIf"/>
                     <nil key="simulatedStatusBarMetrics"/>

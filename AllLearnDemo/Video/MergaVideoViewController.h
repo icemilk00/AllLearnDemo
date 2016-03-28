@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MediaPlayer/MediaPlayer.h>
+#import <MobileCoreServices/UTCoreTypes.h>
+#import <AssetsLibrary/AssetsLibrary.h>
+#import <AVFoundation/AVFoundation.h>
+#import <AssetsLibrary/AssetsLibrary.h>
 
-@interface MergaVideoViewController : UIViewController
+@interface MergaVideoViewController : UIViewController  <UIImagePickerControllerDelegate, UINavigationControllerDelegate,MPMediaPickerControllerDelegate>
 
 @end
