@@ -120,11 +120,142 @@ typedef enum {
             }];
         }
     }
+    else
+    {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Video Saving Failed"
+                                                       delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
     
     _firstAsset = nil;
     _secondAsset = nil;
     _audioAsset = nil;
     [_activityView stopAnimating];
+}
+- (IBAction)mergaTwoTrackAndSave:(id)sender {
+    
+    if (_firstAsset && _secondAsset) {
+        [_activityView startAnimating];
+        
+        AVMutableComposition *composition = [[AVMutableComposition alloc] init];
+        AVMutableCompositionTrack *firstTrack = [composition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
+        [firstTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, _firstAsset.duration) ofTrack:[[_firstAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] atTime:kCMTimeZero error:nil];
+        AVMutableCompositionTrack *secondTrack = [composition addMutableTrackWithMediaType:AVMediaTypeVideo preferredTrackID:kCMPersistentTrackID_Invalid];
+        [secondTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, _secondAsset.duration) ofTrack:[[_secondAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0] atTime:_firstAsset.duration error:nil];
+        
+        
+        if (_audioAsset) {
+            AVMutableCompositionTrack *audioTrack = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
+            [audioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, CMTimeAdd(_firstAsset.duration, _secondAsset.duration)) ofTrack:[[_audioAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0] atTime:kCMTimeZero error:nil];
+        }
+        else
+        {
+            AVMutableCompositionTrack *audioTrack = [composition addMutableTrackWithMediaType:AVMediaTypeAudio preferredTrackID:kCMPersistentTrackID_Invalid];
+            [audioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, _firstAsset.duration) ofTrack:[[_firstAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0] atTime:kCMTimeZero error:nil];
+            [audioTrack insertTimeRange:CMTimeRangeMake(kCMTimeZero, _secondAsset.duration) ofTrack:[[_secondAsset tracksWithMediaType:AVMediaTypeAudio] objectAtIndex:0] atTime:_firstAsset.duration error:nil];
+        }
+        
+        AVMutableVideoCompositionInstruction *mainInstruction = [AVMutableVideoCompositionInstruction videoCompositionInstruction];
+        mainInstruction.timeRange = CMTimeRangeMake(kCMTimeZero, CMTimeAdd(_firstAsset.duration, _secondAsset.duration));
+        
+        AVMutableVideoCompositionLayerInstruction *firstLayerInstruction = [AVMutableVideoCompositionLayerInstruction videoCompositionLayerInstructionWithAssetTrack:firstTrack];
+        AVAssetTrack *firstAssetTrack = [[_firstAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
+        UIImageOrientation firstAssetOrientation = UIImageOrientationUp;
+        BOOL isFirstAssetPartrait = NO;
+        CGAffineTransform firstTransform = firstAssetTrack.preferredTransform;
+        if (firstTransform.a == 0 && firstTransform.b == 1.0 && firstTransform.c == -1.0 && firstTransform.d == 0) {
+            firstAssetOrientation = UIImageOrientationRight;
+            isFirstAssetPartrait = YES;
+        }
+        if (firstTransform.a == 0 && firstTransform.b == -1.0 && firstTransform.c == 1.0 && firstTransform.d == 0) {
+            firstAssetOrientation =  UIImageOrientationLeft;
+            isFirstAssetPartrait = YES;
+        }
+        if (firstTransform.a == 1.0 && firstTransform.b == 0 && firstTransform.c == 0 && firstTransform.d == 1.0) {
+            firstAssetOrientation =  UIImageOrientationUp;
+        }
+        if (firstTransform.a == -1.0 && firstTransform.b == 0 && firstTransform.c == 0 && firstTransform.d == -1.0) {
+            firstAssetOrientation = UIImageOrientationDown;
+        }
+        [firstLayerInstruction setTransform:_firstAsset.preferredTransform atTime:kCMTimeZero];
+        [firstLayerInstruction setOpacity:0.0 atTime:_firstAsset.duration];
+        
+        
+        AVMutableVideoCompositionLayerInstruction *secondlayerInstruction = [AVMutableVideoCompositionLayerInstruction videoCompositionLayerInstructionWithAssetTrack:secondTrack];
+        AVAssetTrack *secondAssetTrack = [[_secondAsset tracksWithMediaType:AVMediaTypeVideo] objectAtIndex:0];
+        UIImageOrientation secondAssetOrientation  = UIImageOrientationUp;
+        BOOL isSecondAssetPortrait  = NO;
+        CGAffineTransform secondTransform = secondAssetTrack.preferredTransform;
+        if (secondTransform.a == 0 && secondTransform.b == 1.0 && secondTransform.c == -1.0 && secondTransform.d == 0) {
+            secondAssetOrientation= UIImageOrientationRight;
+            isSecondAssetPortrait = YES;
+        }
+        if (secondTransform.a == 0 && secondTransform.b == -1.0 && secondTransform.c == 1.0 && secondTransform.d == 0) {
+            secondAssetOrientation =  UIImageOrientationLeft;
+            isSecondAssetPortrait = YES;
+        }
+        if (secondTransform.a == 1.0 && secondTransform.b == 0 && secondTransform.c == 0 && secondTransform.d == 1.0) {
+            secondAssetOrientation =  UIImageOrientationUp;
+        }
+        if (secondTransform.a == -1.0 && secondTransform.b == 0 && secondTransform.c == 0 && secondTransform.d == -1.0) {
+            secondAssetOrientation = UIImageOrientationDown;
+        }
+        [secondlayerInstruction setTransform:_secondAsset.preferredTransform atTime:_firstAsset.duration];
+        
+        mainInstruction.layerInstructions = [NSArray arrayWithObjects:firstLayerInstruction,secondlayerInstruction, nil];
+        AVMutableVideoComposition *mainCompositionInst = [AVMutableVideoComposition videoComposition];
+        mainCompositionInst.instructions = [NSArray arrayWithObject:mainInstruction];
+        mainCompositionInst.frameDuration = CMTimeMake(1, 30);
+        
+        CGSize naturalSizeFirst, naturalSizeSecond;
+        if (isFirstAssetPartrait) {
+            naturalSizeFirst = CGSizeMake(firstAssetTrack.naturalSize.height, firstAssetTrack.naturalSize.width);
+        }else
+        {
+            naturalSizeFirst = firstAssetTrack.naturalSize;
+        }
+        
+        if (isSecondAssetPortrait) {
+            naturalSizeSecond = CGSizeMake(secondAssetTrack.naturalSize.height, secondAssetTrack.naturalSize.width);
+        }else
+        {
+            naturalSizeSecond = secondAssetTrack.naturalSize;
+        }
+        
+        float renderWidth, renderHeight;
+        if (naturalSizeFirst.width > naturalSizeSecond.width) {
+            renderWidth = naturalSizeFirst.height;
+        }
+        else
+        {
+            renderWidth = naturalSizeSecond.height;
+        }
+        
+        if(naturalSizeFirst.height > naturalSizeSecond.height) {
+            renderHeight = naturalSizeFirst.height;
+        } else {
+            renderHeight = naturalSizeSecond.height;
+        }
+        
+        mainCompositionInst.renderSize = CGSizeMake(renderWidth, renderHeight);
+        
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *myPathDocs = [documentsDirectory stringByAppendingPathComponent:[NSString stringWithFormat:@"mergaVideo-%@.mov", [NSDate date]]];
+        NSURL *url = [NSURL fileURLWithPath:myPathDocs];
+        
+        AVAssetExportSession *exporter = [[AVAssetExportSession alloc] initWithAsset:composition presetName:AVAssetExportPresetHighestQuality];
+        exporter.outputURL = url;
+        exporter.outputFileType = AVFileTypeQuickTimeMovie;
+        exporter.shouldOptimizeForNetworkUse = YES;
+        exporter.videoComposition = mainCompositionInst;
+        [exporter exportAsynchronouslyWithCompletionHandler:^{
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self exportDidFinish:exporter];
+            });
+        }];
+        
+    }
 }
 
 -(void)selectMediaFromAlbum

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="lRE-hb-OwV">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="lRE-hb-OwV">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -224,10 +224,22 @@
                                     <constraint firstAttribute="width" constant="158" id="Uyl-Gr-Qmp"/>
                                     <constraint firstAttribute="height" constant="43" id="gHQ-Rz-ouQ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <state key="normal" title="Merga!!"/>
                                 <connections>
                                     <action selector="MergaVideoAndSave:" destination="MB1-US-gpX" eventType="touchUpInside" id="zV9-n0-wSe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rXA-wA-3h1">
+                                <rect key="frame" x="92" y="345" width="191" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="191" id="SNe-AJ-CnK"/>
+                                    <constraint firstAttribute="height" constant="48" id="VRy-a0-yLK"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <state key="normal" title="Merga!! two track!!"/>
+                                <connections>
+                                    <action selector="mergaTwoTrackAndSave:" destination="MB1-US-gpX" eventType="touchUpInside" id="wV9-KL-wss"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -235,10 +247,12 @@
                         <constraints>
                             <constraint firstItem="YJj-wr-2pM" firstAttribute="centerX" secondItem="VNv-L3-Bjt" secondAttribute="centerX" id="1vZ-tn-03z"/>
                             <constraint firstItem="nl3-7Y-nHu" firstAttribute="centerX" secondItem="VNv-L3-Bjt" secondAttribute="centerX" id="Ffr-JN-xhK"/>
+                            <constraint firstItem="rXA-wA-3h1" firstAttribute="centerX" secondItem="VNv-L3-Bjt" secondAttribute="centerX" id="Zla-6k-gJJ"/>
                             <constraint firstItem="1a3-0B-lXk" firstAttribute="top" secondItem="YJj-wr-2pM" secondAttribute="bottom" constant="34" id="aAD-6d-Dcb"/>
                             <constraint firstItem="5Oe-Mt-reA" firstAttribute="centerX" secondItem="VNv-L3-Bjt" secondAttribute="centerX" id="bRH-Fm-RhB"/>
                             <constraint firstItem="5Oe-Mt-reA" firstAttribute="top" secondItem="1a3-0B-lXk" secondAttribute="bottom" constant="35" id="iXn-kV-c8d"/>
                             <constraint firstItem="nl3-7Y-nHu" firstAttribute="top" secondItem="dkt-fv-9zn" secondAttribute="bottom" constant="48" id="nAH-LW-4MP"/>
+                            <constraint firstItem="rXA-wA-3h1" firstAttribute="top" secondItem="5Oe-Mt-reA" secondAttribute="bottom" constant="22" id="v7a-Yi-yh6"/>
                             <constraint firstItem="YJj-wr-2pM" firstAttribute="top" secondItem="nl3-7Y-nHu" secondAttribute="bottom" constant="29" id="w6h-du-vT8"/>
                             <constraint firstItem="1a3-0B-lXk" firstAttribute="centerX" secondItem="VNv-L3-Bjt" secondAttribute="centerX" id="wok-7V-aqy"/>
                         </constraints>

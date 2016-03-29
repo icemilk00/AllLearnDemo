@@ -184,7 +184,7 @@
 				TargetAttributes = {
 					E68305281C96537300E21908 = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = 92U9K98A75;
+						DevelopmentTeam = X5A4TK45QL;
 					};
 				};
 			};
@@ -296,6 +296,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "9aa60b81-0ffb-4417-bd2f-39236250c3bf";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -333,6 +334,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "9aa60b81-0ffb-4417-bd2f-39236250c3bf";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -350,7 +352,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.51vv.mvbox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "9aa60b81-0ffb-4417-bd2f-39236250c3bf";
 			};
 			name = Debug;
 		};
@@ -365,7 +367,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.51vv.mvbox;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "9aa60b81-0ffb-4417-bd2f-39236250c3bf";
 			};
 			name = Release;
 		};
