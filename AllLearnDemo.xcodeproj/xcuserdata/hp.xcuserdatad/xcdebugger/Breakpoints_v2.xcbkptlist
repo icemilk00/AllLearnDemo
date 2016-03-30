@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AllLearnDemo/Video/MergaVideoViewController.m"
-            timestampString = "480929411.029882"
+            timestampString = "481011437.104067"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "254"
-            endingLineNumber = "254"
-            landmarkName = "-mergaTwoTrackAndSave:"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "-MergaVideoAndSave:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,11 +26,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AllLearnDemo/Video/MergaVideoViewController.m"
-            timestampString = "480929411.029882"
+            timestampString = "481011481.172831"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "241"
-            endingLineNumber = "241"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "-MergaVideoAndSave:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AllLearnDemo/Video/MergaVideoViewController.m"
+            timestampString = "481024679.286798"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
             landmarkName = "-mergaTwoTrackAndSave:"
             landmarkType = "5">
          </BreakpointContent>

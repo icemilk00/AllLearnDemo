@@ -177,7 +177,16 @@ typedef enum {
         if (firstTransform.a == -1.0 && firstTransform.b == 0 && firstTransform.c == 0 && firstTransform.d == -1.0) {
             firstAssetOrientation = UIImageOrientationDown;
         }
-        [firstLayerInstruction setTransform:_firstAsset.preferredTransform atTime:kCMTimeZero];
+        NSLog(@"firstAssetTrack.naturalSize= %f, %f", firstAssetTrack.naturalSize.width, firstAssetTrack.naturalSize.height);//480 / 360
+        CGFloat firstAssetScaleToFitRatio = [UIScreen mainScreen].bounds.size.width/firstAssetTrack.naturalSize.width;
+        if(isFirstAssetPartrait){
+            firstAssetScaleToFitRatio = [UIScreen mainScreen].bounds.size.width/firstAssetTrack.naturalSize.height;
+            CGAffineTransform firstAssetScaleFactor = CGAffineTransformMakeScale(firstAssetScaleToFitRatio,firstAssetScaleToFitRatio);
+            [firstLayerInstruction setTransform:CGAffineTransformConcat(firstAssetTrack.preferredTransform, firstAssetScaleFactor) atTime:kCMTimeZero];
+        }else{
+            CGAffineTransform firstAssetScaleFactor = CGAffineTransformMakeScale(firstAssetScaleToFitRatio,firstAssetScaleToFitRatio);
+            [firstLayerInstruction setTransform:CGAffineTransformConcat(CGAffineTransformConcat(firstAssetTrack.preferredTransform, firstAssetScaleFactor),CGAffineTransformMakeTranslation(0, 160)) atTime:kCMTimeZero];
+        }
         [firstLayerInstruction setOpacity:0.0 atTime:_firstAsset.duration];
         
         
@@ -200,7 +209,17 @@ typedef enum {
         if (secondTransform.a == -1.0 && secondTransform.b == 0 && secondTransform.c == 0 && secondTransform.d == -1.0) {
             secondAssetOrientation = UIImageOrientationDown;
         }
-        [secondlayerInstruction setTransform:_secondAsset.preferredTransform atTime:_firstAsset.duration];
+        NSLog(@"secondAssetTrack.naturalSize= %f, %f", secondAssetTrack.naturalSize.width, firstAssetTrack.naturalSize.height);//480 / 360
+        CGFloat secondAssetScaleToFitRatio = [UIScreen mainScreen].bounds.size.width/secondAssetTrack.naturalSize.width;
+        if(isSecondAssetPortrait){
+            secondAssetScaleToFitRatio = [UIScreen mainScreen].bounds.size.width/secondAssetTrack.naturalSize.height;
+            CGAffineTransform secondAssetScaleFactor = CGAffineTransformMakeScale(secondAssetScaleToFitRatio,secondAssetScaleToFitRatio);
+            [secondlayerInstruction setTransform:CGAffineTransformConcat(secondAssetTrack.preferredTransform, secondAssetScaleFactor) atTime:_firstAsset.duration];
+        }else{
+            ;
+            CGAffineTransform secondAssetScaleFactor = CGAffineTransformMakeScale(secondAssetScaleToFitRatio,secondAssetScaleToFitRatio);
+            [secondlayerInstruction setTransform:CGAffineTransformConcat(CGAffineTransformConcat(secondAssetTrack.preferredTransform, secondAssetScaleFactor),CGAffineTransformMakeTranslation(0, 160)) atTime:_firstAsset.duration];
+        }
         
         mainInstruction.layerInstructions = [NSArray arrayWithObjects:firstLayerInstruction,secondlayerInstruction, nil];
         AVMutableVideoComposition *mainCompositionInst = [AVMutableVideoComposition videoComposition];
@@ -224,11 +243,11 @@ typedef enum {
         
         float renderWidth, renderHeight;
         if (naturalSizeFirst.width > naturalSizeSecond.width) {
-            renderWidth = naturalSizeFirst.height;
+            renderWidth = naturalSizeFirst.width;
         }
         else
         {
-            renderWidth = naturalSizeSecond.height;
+            renderWidth = naturalSizeSecond.width;
         }
         
         if(naturalSizeFirst.height > naturalSizeSecond.height) {
@@ -237,7 +256,7 @@ typedef enum {
             renderHeight = naturalSizeSecond.height;
         }
         
-        mainCompositionInst.renderSize = CGSizeMake(renderWidth, renderHeight);
+        mainCompositionInst.renderSize = CGSizeMake([UIScreen mainScreen].bounds.size.width, renderHeight);
         
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
