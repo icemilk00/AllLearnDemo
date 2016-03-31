@@ -19,25 +19,16 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     
+    [self seeCurrentLoop];      //查看runloop结构
+
+}
+
+-(void)seeCurrentLoop
+{
     NSRunLoop *currentLoop = [NSRunLoop currentRunLoop];
     NSLog(@"currentLoop = %@", currentLoop);
-    
-    UIScrollView *scrollView = [[UIScrollView alloc] initWithFrame:self.view.bounds];
-    scrollView.contentSize = CGSizeMake(scrollView.frame.size.width, scrollView.frame.size.height*2);
-    scrollView.delegate = self;
-    [self.view addSubview:scrollView];
 }
 
--(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
-{
-     NSLog(@"currentLoopModle = %@", [NSRunLoop currentRunLoop].currentMode);
-}
-
-
--(void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    NSLog(@"currentLoopModle = %@", [NSRunLoop currentRunLoop].currentMode);
-}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
