@@ -3,6 +3,7 @@
 ###1.基础知识二次研究 
 - runLoop: 
   + [深入理解RunLoop](http://blog.ibireme.com/2015/05/18/runloop/) 
+  + [iOS运行回路（RunLoop）总结](http://blog.csdn.net/ztp800201/article/details/9240913)
 - runTime: 
 - GCD: 
 - block: 
