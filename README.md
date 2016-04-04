@@ -4,6 +4,7 @@
 - runLoop: 
   + [深入理解RunLoop](http://blog.ibireme.com/2015/05/18/runloop/) 
   + [iOS运行回路（RunLoop）总结](http://blog.csdn.net/ztp800201/article/details/9240913)
+  + [iOS多线程编程指南（三）Run Loop](http://www.dreamingwish.com/frontui/article/default/ios-multithread-program-runloop-the.html)
 - runTime: 
 - GCD: 
 - block: 
