@@ -27,3 +27,5 @@
 - 直播(Live) 
 
 ###5.逆向
+- iOS应用逆向工程 第2版
+- (iOSRE|逆!)[http://bbs.iosre.com/]
