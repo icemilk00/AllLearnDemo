@@ -9,7 +9,13 @@
 #import "RunLoopViewController.h"
 
 @interface RunLoopViewController () <UIScrollViewDelegate>
-
+{
+    CFRunLoopObserverRef observer;
+    NSTimer *repeatTimer;
+    
+    NSRunLoop *secondRunLoop;
+    CFRunLoopSourceRef secondSource;
+}
 @end
 
 @implementation RunLoopViewController
@@ -20,7 +26,10 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     [self seeCurrentLoop];      //查看runloop结构
-    [self makeMySource];
+//    [self addRunLoopObserveWithRunLoop:[NSRunLoop currentRunLoop]];   //runloop观察者测试代码
+    [self runRunLoop];          //runloop运行代码
+    
+    
 }
 
 -(void)seeCurrentLoop
@@ -29,28 +38,77 @@
     NSLog(@"currentLoop = %@", currentLoop);
 }
 
--(void)makeMySource
+/*
+ *  在当前线程创建一个runLoop观察者，并观察runloop的所有活动状态，看runloop运行顺序及一些源的运行
+ */
+-(void)addRunLoopObserveWithRunLoop:(NSRunLoop *)currentRunLoop
 {
-    dispatch_source_t source = dispatch_source_create(DISPATCH_SOURCE_TYPE_DATA_ADD, 0, 0, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0));
-    dispatch_source_set_event_handler(source, ^{
-//        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Source Event" delegate:self cancelButtonTitle:@"ok" otherButtonTitles:nil, nil];
-//        [alert show];
-        NSLog(@"1111");
-    });
+    CFRunLoopObserverCallBack runLoopObserverCallBack = myRunLoopObserverCallBack;
+    CFRunLoopObserverContext observerContext = {0, (__bridge void *)(self), NULL, NULL, NULL};
     
-    dispatch_resume(source);
+    observer = CFRunLoopObserverCreate(kCFAllocatorDefault, kCFRunLoopAllActivities, YES, 0, runLoopObserverCallBack, &observerContext);
     
-    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0));
-    dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 1ull * NSEC_PER_SEC, 0);
-    dispatch_source_set_event_handler(timer, ^{
-        dispatch_source_merge_data(source, 1);
-    });
-    dispatch_resume(timer);
+    if (observer) {
+        CFRunLoopRef cf_loop = [currentRunLoop getCFRunLoop];
+        CFRunLoopAddObserver(cf_loop, observer, kCFRunLoopDefaultMode);
+    }
+}
+
+/*
+ *  启动一个runLoop并保持，主要是在非主线程
+ */
+-(void)runRunLoop
+{
+    NSThread *secondThread = [[NSThread alloc] initWithTarget:self selector:@selector(secondThreadAction) object:nil];
+    [secondThread start];
     
-//    dispatch_main();
+    repeatTimer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(repeatTest:) userInfo:secondThread repeats:YES];
     
 }
 
+-(void)secondThreadAction
+{
+    NSLog(@"CurrentThread = %@", [NSThread currentThread]);
+    @autoreleasepool {
+        secondRunLoop = [NSRunLoop currentRunLoop];
+        CFRunLoopSourceContext context = {0, (__bridge void *)(self), NULL, NULL, NULL};
+        secondSource =  CFRunLoopSourceCreate(kCFAllocatorDefault, 0, &context);
+        CFRunLoopAddSource([secondRunLoop getCFRunLoop], secondSource, kCFRunLoopDefaultMode);
+        [secondRunLoop run];
+    }
+}
+
+-(void)repeatTest:(NSTimer *)timer
+{
+    [self performSelector:@selector(testAction) onThread:timer.userInfo withObject:nil waitUntilDone:nil modes:@[NSDefaultRunLoopMode]];
+}
+
+-(void)testAction
+{
+    NSLog(@"This is test");
+}
+
+void myRunLoopObserverCallBack(CFRunLoopObserverRef observer, CFRunLoopActivity activity, void *info)
+{
+    NSLog(@"myRunLoopObserverCallBack's status = %lu", activity);
+}
+
+-(void)viewWillDisappear:(BOOL)animated
+{
+    if (repeatTimer && repeatTimer.isValid) {
+        [repeatTimer invalidate];
+    }
+    
+    CFRunLoopRemoveSource([secondRunLoop getCFRunLoop], secondSource, kCFRunLoopDefaultMode);
+    CFRelease(secondSource);
+    //CFRunLoopStop() 是需要把 runloop中的源清掉的，否则在stop之后会重新wake up起runloop，所以主线程的runloop调用这个方法没有用，系统会把一些系统的源重新加进去并wake up
+    CFRunLoopStop([secondRunLoop getCFRunLoop]);
+}
+
+-(void)dealloc
+{
+    CFRunLoopRemoveObserver([[NSRunLoop currentRunLoop] getCFRunLoop], observer, kCFRunLoopDefaultMode);
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
