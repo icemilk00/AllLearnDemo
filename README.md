@@ -19,6 +19,7 @@
 - [SDWebImage](https://github.com/rs/SDWebImage) 
 - [Masonry](https://github.com/SnapKit/Masonry) 
 - [RAC](https://github.com/ReactiveCocoa/ReactiveCocoa) 
+- [AsyncDisplayKit](https://github.com/facebook/AsyncDisplayKit)
 
 ###4.垂直领域研究
 - 音视频(Audio & Video) 
