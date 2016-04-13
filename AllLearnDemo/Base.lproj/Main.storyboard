@@ -314,15 +314,48 @@
                     <view key="view" contentMode="scaleToFill" id="fq4-Jh-4go">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6Ib-Mg-NhU">
+                                <rect key="frame" x="102.5" y="216" width="170" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="HG0-ca-kfj"/>
+                                    <constraint firstAttribute="width" constant="170" id="plq-hr-Iui"/>
+                                </constraints>
+                                <state key="normal" title="SourceEventButton"/>
+                                <connections>
+                                    <action selector="sourceEventAction:" destination="W0g-D2-e8H" eventType="touchUpInside" id="bxd-U9-wo5"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FQ0-Cs-HWd">
+                                <rect key="frame" x="105" y="285" width="164" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="164" id="NY5-48-Ar8"/>
+                                    <constraint firstAttribute="height" constant="30" id="P50-hv-iID"/>
+                                </constraints>
+                                <state key="normal" title="Stop Third RunLoop"/>
+                                <connections>
+                                    <action selector="stopThirdRunLoop:" destination="W0g-D2-e8H" eventType="touchUpInside" id="gg1-9U-KnE"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="FQ0-Cs-HWd" firstAttribute="centerX" secondItem="fq4-Jh-4go" secondAttribute="centerX" id="6wZ-fo-yRK"/>
+                            <constraint firstItem="FQ0-Cs-HWd" firstAttribute="top" secondItem="6Ib-Mg-NhU" secondAttribute="bottom" constant="39" id="Sss-8z-u0f"/>
+                            <constraint firstItem="6Ib-Mg-NhU" firstAttribute="centerX" secondItem="fq4-Jh-4go" secondAttribute="centerX" id="XWP-pc-eT7"/>
+                            <constraint firstItem="6Ib-Mg-NhU" firstAttribute="top" secondItem="8y2-RC-gHJ" secondAttribute="bottom" constant="172" id="p50-u3-bG3"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="RunLoop" id="XDd-pE-mBV"/>
                     <nil key="simulatedStatusBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="sourceEventButton" destination="6Ib-Mg-NhU" id="upi-We-Yse"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nmP-3f-YGn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2154.5" y="-1496.5"/>
+            <point key="canvasLocation" x="-2445.5" y="-1539.5"/>
         </scene>
     </scenes>
 </document>
