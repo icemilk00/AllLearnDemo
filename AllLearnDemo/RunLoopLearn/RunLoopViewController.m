@@ -9,7 +9,7 @@
 #import "RunLoopViewController.h"
 
 
-@interface RunLoopViewController () <UIScrollViewDelegate>
+@interface RunLoopViewController () <UIScrollViewDelegate, NSPortDelegate>
 {
     CFRunLoopObserverRef observer;  //runloop观察者
     
@@ -19,6 +19,10 @@
     CFRunLoopRef thirdRunLoop;
     CFRunLoopSourceRef thirdSource;
     BOOL shouldStopThirdRunLoop;
+    
+    //测试定时器源的两个定时器
+    NSTimer *timer1;
+    CFRunLoopTimerRef timer2;
 }
 @property (weak, nonatomic) IBOutlet UIButton *sourceEventButton;
 @end
@@ -30,11 +34,12 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
     
-    [self seeCurrentLoop];                  //查看runloop结构
-    [self addRunLoopObserve];               //runloop观察者测试代码
-    [self runRunLoop];                      //第二线程runloop运行代码
-    [self configMySource];
-
+//    [self seeCurrentLoop];                  //查看runloop结构
+//    [self addRunLoopObserve];               //runloop观察者测试代码
+//    [self runRunLoop];                      //第二线程runloop运行代码
+//    [self configMySource];                  //在新线程里创建source源，并看其工作原理
+//    [self configMyTimer];                   //在新线程里创建定时器源，并看其工作原理
+    [self configMyPortSource];
     
 }
 
@@ -207,14 +212,77 @@ void mySourcePerform(void *info)
     shouldStopThirdRunLoop = YES;
 }
 
+#pragma mark - 为runloop添加定时器源
+-(void)configMyTimer
+{
+    timer1 = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(myTimer1Action) userInfo:nil repeats:YES];
+    
+    CFRunLoopTimerContext timer2Context = {
+        0,
+        NULL,
+        NULL,
+        NULL,
+        NULL
+    };
+    timer2 = CFRunLoopTimerCreate(kCFAllocatorDefault, 2, 1, 0, 0, &timer2CallBack, &timer2Context);
+    CFRunLoopAddTimer(CFRunLoopGetCurrent(), timer2, kCFRunLoopDefaultMode);
+}
+
+-(void)myTimer1Action
+{
+    NSLog(@"i'm timer1");
+}
+
+void timer2CallBack(CFRunLoopTimerRef timer, void *info)
+{
+     NSLog(@"i'm timer2 ");
+}
+
 #pragma mark - 其他
 -(void)viewWillDisappear:(BOOL)animated
 {
     if (repeatTimer && repeatTimer.isValid) {
         [repeatTimer invalidate], repeatTimer = nil;
     }
+    
+    if(timer1 && timer1.isValid)
+    {
+        [timer1 invalidate], timer1 = nil;
+    }
+    
+    if (timer2) {
+        CFRunLoopRemoveTimer(CFRunLoopGetCurrent(), timer2, kCFRunLoopDefaultMode);
+        CFRelease(timer2);
+    }
 }
 
+#pragma mark - 配置端口源
+-(void)configMyPortSource
+{
+    NSPort *port = [NSMachPort port];
+    if (port) {
+        [port setDelegate:self];
+        [[NSRunLoop currentRunLoop] addPort:port forMode:NSDefaultRunLoopMode];
+        
+        [NSThread detachNewThreadSelector:@selector(launchThreadWithPort:) toTarget:self withObject:port];
+    }
+}
+
+-(void)launchThreadWithPort:(id)port
+{
+    @autoreleasepool {
+    
+        NSPort * myPort = [NSPort port];
+        [myPort setDelegate:self];
+        [[NSRunLoop currentRunLoop] addPort:port forMode:NSDefaultRunLoopMode];
+        
+//    NSPortMessage *msg = [[NSPortMessage alloc] initWithSendPort:port
+//                                                     receivePort:myPort components:nil];
+    
+//        [NSPortMessage alloc]
+        
+    }
+}
 
 -(void)dealloc
 {

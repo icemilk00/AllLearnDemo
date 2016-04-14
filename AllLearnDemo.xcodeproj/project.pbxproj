@@ -24,6 +24,7 @@
 		E68305391C96537300E21908 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E68305381C96537300E21908 /* Assets.xcassets */; };
 		E683053C1C96537300E21908 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E683053A1C96537300E21908 /* LaunchScreen.storyboard */; };
 		E683054A1C96653600E21908 /* RunLoopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E68305491C96653600E21908 /* RunLoopViewController.m */; };
+		E6AD25B71CBFBC5F00F59AC4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6AD25B61CBFBC5F00F59AC4 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +54,7 @@
 		E683053D1C96537300E21908 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E68305481C96653600E21908 /* RunLoopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunLoopViewController.h; sourceTree = "<group>"; };
 		E68305491C96653600E21908 /* RunLoopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RunLoopViewController.m; sourceTree = "<group>"; };
+		E6AD25B61CBFBC5F00F59AC4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6AD25B71CBFBC5F00F59AC4 /* Foundation.framework in Frameworks */,
 				E680AEB61CA91E8000874F35 /* AVFoundation.framework in Frameworks */,
 				E680AEB41CA91E7900874F35 /* QuartzCore.framework in Frameworks */,
 				E680AEB21CA91E6F00874F35 /* MobileCoreServices.framework in Frameworks */,
@@ -104,6 +107,7 @@
 		E68305201C96537200E21908 = {
 			isa = PBXGroup;
 			children = (
+				E6AD25B61CBFBC5F00F59AC4 /* Foundation.framework */,
 				E683052B1C96537300E21908 /* AllLearnDemo */,
 				E683052A1C96537300E21908 /* Products */,
 			);
