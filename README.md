@@ -30,13 +30,18 @@
 - [Masonry](https://github.com/SnapKit/Masonry) 
 - [RAC](https://github.com/ReactiveCocoa/ReactiveCocoa) 
 - [AsyncDisplayKit](https://github.com/facebook/AsyncDisplayKit)
-
-###4.垂直领域研究
+###4.架构
+- [iOS应用架构谈 开篇](http://casatwy.com/iosying-yong-jia-gou-tan-kai-pian.html)
+- [iOS应用架构谈 view层的组织和调用方案](http://casatwy.com/iosying-yong-jia-gou-tan-viewceng-de-zu-zhi-he-diao-yong-fang-an.html)
+- [iOS应用架构谈 网络层设计方案](http://casatwy.com/iosying-yong-jia-gou-tan-wang-luo-ceng-she-ji-fang-an.html)
+- [iOS应用架构谈 本地持久化方案及动态部署](http://casatwy.com/iosying-yong-jia-gou-tan-ben-di-chi-jiu-hua-fang-an-ji-dong-tai-bu-shu.html)
+- [iOS应用架构谈 组件化方案](http://casatwy.com/iOS-Modulization.html)
+###5.垂直领域研究
 - 音视频(Audio & Video) 
 - 动画 (Animation) 
 - 图像处理(Image) 
 - 直播(Live) 
 
-###5.逆向
+###6.逆向
 - iOS应用逆向工程 第2版
 - [iOSRE|逆!](http://bbs.iosre.com/)
