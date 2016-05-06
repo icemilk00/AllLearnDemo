@@ -18,8 +18,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-//    [self GCD_barrier];
+    [self GCD_barrier];
     [self GCD_group];
+    [self GCD_apply];
 }
 
 -(void)GCD_barrier
@@ -124,6 +125,21 @@
      *   方法1和方法2的效果是一样的，方法1如果不把代码块放到新线程中会阻塞主线程
      *   group不区分队列只针对任务完成度
      */
+}
+
+-(void)GCD_apply
+{
+    dispatch_apply(3, dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^(size_t i) {
+        NSLog(@"i = %zu", i);
+        NSLog(@"current thread = %@", [NSThread currentThread]);
+    });
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        for (int i = 0; i < 3; i ++) {
+            NSLog(@"i = %d", i);
+            NSLog(@"current thread = %@", [NSThread currentThread]);
+        }
+    });
 }
 
 - (void)didReceiveMemoryWarning {
