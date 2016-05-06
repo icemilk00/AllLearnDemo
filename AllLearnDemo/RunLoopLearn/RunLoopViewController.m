@@ -280,7 +280,6 @@ void timer2CallBack(CFRunLoopTimerRef timer, void *info)
 //                                                     receivePort:myPort components:nil];
     
 //        [NSPortMessage alloc]
-        
     }
 }
 

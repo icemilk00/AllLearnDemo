@@ -24,7 +24,11 @@
 		E68305391C96537300E21908 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E68305381C96537300E21908 /* Assets.xcassets */; };
 		E683053C1C96537300E21908 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E683053A1C96537300E21908 /* LaunchScreen.storyboard */; };
 		E683054A1C96653600E21908 /* RunLoopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E68305491C96653600E21908 /* RunLoopViewController.m */; };
+		E69D0CEC1CD89C6B00340419 /* GCDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E69D0CEB1CD89C6B00340419 /* GCDViewController.m */; };
 		E6AD25B71CBFBC5F00F59AC4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E6AD25B61CBFBC5F00F59AC4 /* Foundation.framework */; };
+		E6BDCB2D1CCA151A003BA1A5 /* ImageLearnViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E6BDCB2C1CCA151A003BA1A5 /* ImageLearnViewController.m */; };
+		E6BDCB2F1CCA15C4003BA1A5 /* imageLearn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6BDCB2E1CCA15C4003BA1A5 /* imageLearn@2x.png */; };
+		E6BDCB311CCA19FB003BA1A5 /* beixihuanfenxiangnan@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E6BDCB301CCA19FB003BA1A5 /* beixihuanfenxiangnan@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,7 +58,13 @@
 		E683053D1C96537300E21908 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E68305481C96653600E21908 /* RunLoopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RunLoopViewController.h; sourceTree = "<group>"; };
 		E68305491C96653600E21908 /* RunLoopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RunLoopViewController.m; sourceTree = "<group>"; };
+		E69D0CEA1CD89C6B00340419 /* GCDViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCDViewController.h; sourceTree = "<group>"; };
+		E69D0CEB1CD89C6B00340419 /* GCDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCDViewController.m; sourceTree = "<group>"; };
 		E6AD25B61CBFBC5F00F59AC4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		E6BDCB2B1CCA151A003BA1A5 /* ImageLearnViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageLearnViewController.h; sourceTree = "<group>"; };
+		E6BDCB2C1CCA151A003BA1A5 /* ImageLearnViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageLearnViewController.m; sourceTree = "<group>"; };
+		E6BDCB2E1CCA15C4003BA1A5 /* imageLearn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "imageLearn@2x.png"; sourceTree = "<group>"; };
+		E6BDCB301CCA19FB003BA1A5 /* beixihuanfenxiangnan@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beixihuanfenxiangnan@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +134,8 @@
 		E683052B1C96537300E21908 /* AllLearnDemo */ = {
 			isa = PBXGroup;
 			children = (
+				E69D0CE91CD89C5300340419 /* GCD */,
+				E6BDCB2A1CCA14CC003BA1A5 /* Image */,
 				E680AEA71CA91C6100874F35 /* Video */,
 				E68305471C96653600E21908 /* RunLoopLearn */,
 				E683052F1C96537300E21908 /* AppDelegate.h */,
@@ -155,6 +167,26 @@
 				E68305491C96653600E21908 /* RunLoopViewController.m */,
 			);
 			path = RunLoopLearn;
+			sourceTree = "<group>";
+		};
+		E69D0CE91CD89C5300340419 /* GCD */ = {
+			isa = PBXGroup;
+			children = (
+				E69D0CEA1CD89C6B00340419 /* GCDViewController.h */,
+				E69D0CEB1CD89C6B00340419 /* GCDViewController.m */,
+			);
+			path = GCD;
+			sourceTree = "<group>";
+		};
+		E6BDCB2A1CCA14CC003BA1A5 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				E6BDCB2B1CCA151A003BA1A5 /* ImageLearnViewController.h */,
+				E6BDCB2C1CCA151A003BA1A5 /* ImageLearnViewController.m */,
+				E6BDCB2E1CCA15C4003BA1A5 /* imageLearn@2x.png */,
+				E6BDCB301CCA19FB003BA1A5 /* beixihuanfenxiangnan@2x.png */,
+			);
+			path = Image;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,8 +248,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E683053C1C96537300E21908 /* LaunchScreen.storyboard in Resources */,
+				E6BDCB311CCA19FB003BA1A5 /* beixihuanfenxiangnan@2x.png in Resources */,
 				E68305391C96537300E21908 /* Assets.xcassets in Resources */,
 				E68305371C96537300E21908 /* Main.storyboard in Resources */,
+				E6BDCB2F1CCA15C4003BA1A5 /* imageLearn@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -231,7 +265,9 @@
 				E680AEBA1CA9226400874F35 /* PlayVideoViewController.m in Sources */,
 				E680AEAA1CA91C8200874F35 /* VideoViewController.m in Sources */,
 				E683054A1C96653600E21908 /* RunLoopViewController.m in Sources */,
+				E69D0CEC1CD89C6B00340419 /* GCDViewController.m in Sources */,
 				E68305341C96537300E21908 /* ViewController.m in Sources */,
+				E6BDCB2D1CCA151A003BA1A5 /* ImageLearnViewController.m in Sources */,
 				E68305311C96537300E21908 /* AppDelegate.m in Sources */,
 				E683052E1C96537300E21908 /* main.m in Sources */,
 				E680AEBD1CA9323D00874F35 /* RecordVideoViewController.m in Sources */,

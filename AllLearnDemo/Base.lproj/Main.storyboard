@@ -55,13 +55,39 @@
                                     <segue destination="Pp5-yk-AQE" kind="push" id="9V8-1I-H3i"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FWu-YP-LMA">
+                                <rect key="frame" x="125" y="229" width="124" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="124" id="EUL-Iw-lSr"/>
+                                    <constraint firstAttribute="height" constant="30" id="YyC-O0-ucl"/>
+                                </constraints>
+                                <state key="normal" title="Image"/>
+                                <connections>
+                                    <segue destination="ik5-y6-b1e" kind="push" id="wPC-qg-8IP"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9Gj-t4-qZj">
+                                <rect key="frame" x="137" y="287" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="kc4-jH-rH8"/>
+                                    <constraint firstAttribute="width" constant="100" id="tGZ-7a-R8H"/>
+                                </constraints>
+                                <state key="normal" title="GCD"/>
+                                <connections>
+                                    <segue destination="fub-wA-jKP" kind="push" id="zo4-D4-aqV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="9Gj-t4-qZj" firstAttribute="top" secondItem="FWu-YP-LMA" secondAttribute="bottom" constant="28" id="2np-vl-OaL"/>
+                            <constraint firstItem="FWu-YP-LMA" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="68l-3Z-Xb1"/>
                             <constraint firstItem="19Z-0n-fro" firstAttribute="top" secondItem="kMm-qb-aJ7" secondAttribute="bottom" constant="29" id="HBh-S7-qR7"/>
                             <constraint firstItem="kMm-qb-aJ7" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="48" id="JZV-7A-wFU"/>
                             <constraint firstItem="kMm-qb-aJ7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="eJR-Q4-km4"/>
                             <constraint firstItem="19Z-0n-fro" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="i3K-Aw-GQj"/>
+                            <constraint firstItem="FWu-YP-LMA" firstAttribute="top" secondItem="19Z-0n-fro" secondAttribute="bottom" constant="28" id="jxq-Wi-E1T"/>
+                            <constraint firstItem="9Gj-t4-qZj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="utg-R9-riP"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Learn" id="5mB-gs-R2J"/>
@@ -70,6 +96,56 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2939.5" y="137.5"/>
+        </scene>
+        <!--GCD-->
+        <scene sceneID="U4w-nM-w7W">
+            <objects>
+                <viewController id="fub-wA-jKP" customClass="GCDViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1r2-iQ-Kdj"/>
+                        <viewControllerLayoutGuide type="bottom" id="mg0-dv-3So"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dYv-Gl-jFb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="GCD" id="bpE-mW-PVy"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZAY-Io-8UJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2939.5" y="999.5"/>
+        </scene>
+        <!--Image-->
+        <scene sceneID="06u-ET-x2X">
+            <objects>
+                <viewController id="ik5-y6-b1e" customClass="ImageLearnViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ef5-mZ-CkW"/>
+                        <viewControllerLayoutGuide type="bottom" id="ZuY-Ol-gg4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="7g2-ae-kfp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="beixihuanfenxiangnan.png" translatesAutoresizingMaskIntoConstraints="NO" id="Y4Y-DY-gVD">
+                                <rect key="frame" x="0.0" y="44" width="375" height="375"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Image" id="ETf-W6-czI"/>
+                    <nil key="simulatedStatusBarMetrics"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="375" height="667"/>
+                    <connections>
+                        <outlet property="showImageView" destination="Y4Y-DY-gVD" id="Pv0-LU-Hdf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ioH-pl-gCa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2154.5" y="757.5"/>
         </scene>
         <!--Video-->
         <scene sceneID="8mW-Xd-TAw">
@@ -358,4 +434,7 @@
             <point key="canvasLocation" x="-2445.5" y="-1539.5"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="beixihuanfenxiangnan.png" width="289" height="289"/>
+    </resources>
 </document>

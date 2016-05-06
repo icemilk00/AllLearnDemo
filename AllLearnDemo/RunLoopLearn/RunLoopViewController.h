@@ -10,4 +10,6 @@
 
 @interface RunLoopViewController : UIViewController
 
+@property (nonatomic, strong) UIColor *titleColor;
+
 @end
